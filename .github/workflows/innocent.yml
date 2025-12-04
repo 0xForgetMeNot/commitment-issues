@@ -1,11 +1,10 @@
 name: Innocent Workflow
-'on': workflow_dispatch
+on: workflow_dispatch
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello"
       - name: Badly formatted step
-        run: >-
-          echo "This line is fine" echo "But this has wrong indentation on
-          purpose"
+        run: echo "This line is fine"
+           echo "But this has wrong indentation on purpose"
